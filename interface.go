@@ -45,6 +45,9 @@ type BlockchainHook interface {
 	// GetStateRootHash returns the state root hash from the last committed block
 	GetStateRootHash() []byte
 
+	// ChainID returns the chain ID
+	ChainID() []byte
+
 	// CurrentNonce returns the nonce from the current block
 	CurrentNonce() uint64
 
