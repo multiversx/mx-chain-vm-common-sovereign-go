@@ -141,6 +141,17 @@ type ContractCallInput struct {
 	AllowInitFunction bool
 }
 
+// ContractSameContextCallInput VM input when calling a function from an existing contract on the same context
+type ContractSameContextCallInput struct {
+	ContractCallInput
+
+	// DoTransfer specifies whether the transfer should be executed for this same context call
+	DoTransfer bool
+
+	// CodeAddress is the address for the code
+	CodeAddress []byte
+}
+
 // ParsedESDTTransfers defines the struct for the parsed esdt transfers
 type ParsedESDTTransfers struct {
 	ESDTTransfers []*ESDTTransfer
