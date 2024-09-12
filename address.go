@@ -110,3 +110,52 @@ func ParseVMTypeFromContractAddress(contractAddress []byte) ([]byte, error) {
 	endIndex := NumInitCharactersForScAddress
 	return contractAddress[startIndex:endIndex], nil
 }
+
+// AliasSaveRequest is the save request for an alias
+type AliasSaveRequest struct {
+	MultiversXAddress []byte
+	AliasAddress      []byte
+	AliasIdentifier   core.AddressIdentifier
+}
+
+// AddressRequest is the request for an address
+type AddressRequest struct {
+	SourceAddress       []byte
+	SourceIdentifier    core.AddressIdentifier
+	RequestedIdentifier core.AddressIdentifier
+	SaveOnGenerate      bool
+}
+
+// AddressResponse is the response for an address request
+type AddressResponse struct {
+	RequestedAddress  []byte
+	MultiversXAddress []byte
+}
+
+func ValidateAliasSaveRequest(request *AliasSaveRequest) error {
+	if request == nil {
+		return ErrNilRequest
+	}
+	switch request.AliasIdentifier {
+	case core.InvalidAddressIdentifier, core.MVXAddressIdentifier:
+		return core.ErrInvalidAddressIdentifier
+	default:
+		return nil
+	}
+}
+
+func ValidateAddressRequest(request *AddressRequest) error {
+	if request == nil {
+		return ErrNilRequest
+	}
+	if request.SourceIdentifier == core.InvalidAddressIdentifier {
+		return ErrInvalidSourceIdentifier
+	}
+	if request.RequestedIdentifier == core.InvalidAddressIdentifier {
+		return ErrInvalidRequestedIdentifier
+	}
+	if request.SourceIdentifier == request.RequestedIdentifier {
+		return ErrSourceIdentifierMatchesRequestedIdentifier
+	}
+	return nil
+}

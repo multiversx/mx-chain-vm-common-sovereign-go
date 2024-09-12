@@ -112,6 +112,9 @@ type ESDTTransfer struct {
 type ContractCreateInput struct {
 	VMInput
 
+	// AliasAddress is the alias address of the contract being created.
+	AliasAddress []byte
+
 	// ContractCode is the code of the contract being created, assembled into a byte array.
 	ContractCode []byte
 
@@ -125,6 +128,9 @@ type ContractCallInput struct {
 
 	// RecipientAddr is the smart contract public key, "to".
 	RecipientAddr []byte
+
+	// RecipientAliasAddr is the alias address of the smart contract.
+	RecipientAliasAddr []byte
 
 	// Function is the name of the smart contract function that will be called.
 	// The function must be public
