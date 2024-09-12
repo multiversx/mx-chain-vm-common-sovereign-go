@@ -605,6 +605,42 @@ func (b *builtInFuncCreator) CreateBuiltInFunctionContainer() error {
 		return err
 	}
 
+	newFunc, err = NewConvertEncodingFunc(b.gasConfig.BaseOperationCost, b.accounts, core.BuiltInFunctionEthereumToMultiversXEncodingWithMultiversXSignature)
+	if err != nil {
+		return err
+	}
+	err = b.builtInFunctions.Add(core.BuiltInFunctionEthereumToMultiversXEncodingWithMultiversXSignature, newFunc)
+	if err != nil {
+		return err
+	}
+
+	newFunc, err = NewConvertEncodingFunc(b.gasConfig.BaseOperationCost, b.accounts, core.BuiltInFunctionEthereumToMultiversXEncodingWithEthereumSignature)
+	if err != nil {
+		return err
+	}
+	err = b.builtInFunctions.Add(core.BuiltInFunctionEthereumToMultiversXEncodingWithEthereumSignature, newFunc)
+	if err != nil {
+		return err
+	}
+
+	newFunc, err = NewConvertEncodingFunc(b.gasConfig.BaseOperationCost, b.accounts, core.BuiltInFunctionMultiversXToEthereumEncodingWithMultiversXSignature)
+	if err != nil {
+		return err
+	}
+	err = b.builtInFunctions.Add(core.BuiltInFunctionMultiversXToEthereumEncodingWithMultiversXSignature, newFunc)
+	if err != nil {
+		return err
+	}
+
+	newFunc, err = NewConvertEncodingFunc(b.gasConfig.BaseOperationCost, b.accounts, core.BuiltInFunctionMultiversXToEthereumEncodingWithEthereumSignature)
+	if err != nil {
+		return err
+	}
+	err = b.builtInFunctions.Add(core.BuiltInFunctionMultiversXToEthereumEncodingWithEthereumSignature, newFunc)
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 
