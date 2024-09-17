@@ -28,3 +28,6 @@ var ErrInvalidRequestedIdentifier = errors.New("invalid requested identifier")
 
 // ErrSourceIdentifierMatchesRequestedIdentifier signals that the source identifier matches the requested identifier
 var ErrSourceIdentifierMatchesRequestedIdentifier = errors.New("source identifier matches requested identifier")
+
+// ErrIdentifierNotHandledForBlankAddress signals that the identifier is not handled for blank address
+var ErrIdentifierNotHandledForBlankAddress = errors.New("address identifier not handled for blank address")
