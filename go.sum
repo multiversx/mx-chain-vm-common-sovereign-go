@@ -29,8 +29,8 @@ github.com/btcsuite/snappy-go v0.0.0-20151229074030-0bdef8d06723/go.mod h1:8woku
 github.com/btcsuite/snappy-go v1.0.0/go.mod h1:8woku9dyThutzjeg+3xrA5iCpBRH8XEEg3lh6TiUghc=
 github.com/btcsuite/websocket v0.0.0-20150119174127-31079b680792/go.mod h1:ghJtEyQwv5/p4Mg4C0fgbePVuGr935/5ddU9Z3TmDRY=
 github.com/btcsuite/winsvc v1.0.0/go.mod h1:jsenWakMcC0zFBFurPLEAyrnc/teJEM1O46fmI40EZs=
-github.com/buidly/mx-evm-chain-core-go v0.0.0-20240912061415-6accab87a6f8 h1:C1EZ/JHaMgKNdLqpizi1ysmUSkSke4RTLrWF/xc7g8Q=
-github.com/buidly/mx-evm-chain-core-go v0.0.0-20240912061415-6accab87a6f8/go.mod h1:uTeQAMCx/VGbOtqSQ3RE+sIGUTgoemdftGAdAjr24RI=
+github.com/buidly/mx-evm-chain-core-go v0.0.0-20241103203857-bd0899d823bf h1:7/DUQLvd7jAgOBALTAibi8fpMb8wn6jHr16qbQ056VA=
+github.com/buidly/mx-evm-chain-core-go v0.0.0-20241103203857-bd0899d823bf/go.mod h1:uTeQAMCx/VGbOtqSQ3RE+sIGUTgoemdftGAdAjr24RI=
 github.com/buidly/mx-evm-sdk-abi-go v0.0.0-20240912062928-8502f4c3b37c h1:Xg15iusEuPNoenuwNO8/PA6Wz9mU0fIKKFL7HITDhnY=
 github.com/buidly/mx-evm-sdk-abi-go v0.0.0-20240912062928-8502f4c3b37c/go.mod h1:++ds6BB47LrXl8a9N2VGRBzHCfl6kkxRCHb31a5z61g=
 github.com/cespare/xxhash/v2 v2.2.0 h1:DC2CZ1Ep5Y4k3ZQ899DldepgrayRUGE6BBZ/cd9Cj44=
@@ -109,8 +109,8 @@ github.com/mmcloughlin/addchain v0.4.0/go.mod h1:A86O+tHqZLMNO4w6ZZ4FlVQEadcoqky
 github.com/mmcloughlin/profile v0.1.1/go.mod h1:IhHD7q1ooxgwTgjxQYkACGA77oFTDdFVejUS1/tS/qU=
 github.com/mr-tron/base58 v1.2.0 h1:T/HDJBh4ZCPbU39/+c3rRvE0uKBQlU27+QI8LJ4t64o=
 github.com/mr-tron/base58 v1.2.0/go.mod h1:BinMc/sQntlIE1frQmRFPUoPA1Zkr8VRgBdjWI2mNwc=
-github.com/multiversx/mx-chain-logger-go v1.0.15-0.20240508072523-3f00a726af57 h1:g9t410dqjcb7UUptbVd/H6Ua12sEzWU4v7VplyNvRZ0=
-github.com/multiversx/mx-chain-logger-go v1.0.15-0.20240508072523-3f00a726af57/go.mod h1:cY6CIXpndW5g5PTPn4WzPwka/UBEf+mgw+PSY5pHGAU=
+github.com/multiversx/mx-chain-logger-go v1.0.15 h1:HlNdK8etyJyL9NQ+6mIXyKPEBo+wRqOwi3n+m2QIHXc=
+github.com/multiversx/mx-chain-logger-go v1.0.15/go.mod h1:t3PRKaWB1M+i6gUfD27KXgzLJJC+mAQiN+FLlL1yoGQ=
 github.com/multiversx/mx-components-big-int v1.0.0 h1:Wkr8lSzK2nDqixOrrBa47VNuqdhV1m/aJhaP1EMaiS8=
 github.com/multiversx/mx-components-big-int v1.0.0/go.mod h1:maIEMgHlNE2u78JaDD0oLzri+ShgU4okHfzP3LWGdQM=
 github.com/multiversx/protobuf v1.3.2 h1:RaNkxvGTGbA0lMcnHAN24qE1G1i+Xs5yHA6MDvQ4mSM=
