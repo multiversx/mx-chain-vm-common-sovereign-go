@@ -9,6 +9,7 @@ import (
 	"github.com/multiversx/mx-chain-core-go/core"
 	"github.com/multiversx/mx-chain-core-go/core/check"
 	"github.com/multiversx/mx-chain-core-go/marshal"
+
 	"github.com/multiversx/mx-chain-vm-common-go"
 )
 
@@ -273,16 +274,14 @@ func (e *esdtGlobalSettings) SetTokenType(
 	tokenType uint32,
 	dstAcc vmcommon.UserAccountHandler,
 ) error {
-	var systemAccount vmcommon.UserAccountHandler
-	var err error
-
-	if check.IfNil(dstAcc) {
-		globalSettingsTokenType, err := convertToGlobalSettingsHandlerTokenType(tokenType)
+	globalSettingsTokenType, err := convertToGlobalSettingsHandlerTokenType(tokenType)
 	if err != nil {
 		return err
 	}
 
-	systemAccount, err = getSystemAccount(e.accounts)
+	var systemAccount vmcommon.UserAccountHandler
+	if check.IfNil(dstAcc) {
+		systemAccount, err = getSystemAccount(e.accounts)
 		if err != nil {
 			return err
 		}
