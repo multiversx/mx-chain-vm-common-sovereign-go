@@ -10,6 +10,7 @@ import (
 	"github.com/multiversx/mx-chain-core-go/core"
 	"github.com/multiversx/mx-chain-core-go/core/check"
 	"github.com/multiversx/mx-chain-core-go/data/esdt"
+
 	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
 )
 
@@ -258,7 +259,8 @@ func (e *esdtNFTTransfer) processNFTTransferOnSenderShard(
 		MustUpdateAllFields:         false,
 		IsReturnWithError:           vmInput.ReturnCallAfterError,
 		KeepMetaDataOnZeroLiquidity: false,
-	}_, err = e.esdtStorageHandler.SaveESDTNFTToken(
+	}
+	_, err = e.esdtStorageHandler.SaveESDTNFTToken(
 		acntSnd.AddressBytes(),
 		acntSnd,
 		esdtTokenKey,
