@@ -545,7 +545,7 @@ func TestEsdtNFTCreate_ProcessBuiltinFunctionCrossChainToken(t *testing.T) {
 	})
 
 	t.Run("create sft should work", func(t *testing.T) {
-		token := "sov2-SFT-1q2w3e"
+		token := "sov2-SFT-1a2b3c"
 		tokenType := core.SemiFungible
 		quantity := big.NewInt(20)
 		nonce := big.NewInt(3)
@@ -561,7 +561,7 @@ func TestEsdtNFTCreate_ProcessBuiltinFunctionCrossChainToken(t *testing.T) {
 	})
 
 	t.Run("create dynamic sft should work", func(t *testing.T) {
-		token := "sov3-DSFT-1q2w33"
+		token := "sov3-DSFT-1a2f33"
 		tokenType := core.DynamicSFT
 		quantity := big.NewInt(15)
 		nonce := big.NewInt(33)
@@ -577,7 +577,7 @@ func TestEsdtNFTCreate_ProcessBuiltinFunctionCrossChainToken(t *testing.T) {
 	})
 
 	t.Run("create metaesdt should work", func(t *testing.T) {
-		token := "sov3-MESDT-1fg23d"
+		token := "sov3-MESDT-1fb23d"
 		tokenType := core.MetaFungible
 		quantity := big.NewInt(56)
 		nonce := big.NewInt(684)

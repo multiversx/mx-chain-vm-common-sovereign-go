@@ -996,12 +996,7 @@ func TestESDTNFTMultiTransfer_ProcessBuiltinFunctionOnSovereignTransfer(t *testi
 		},
 	}
 
-	esdtStorage := createNewESDTDataStorageHandlerWithArgs(
-		multiTransfer.globalSettingsHandler,
-		multiTransfer.accounts,
-		enableEpochsHandler,
-		&mock.CrossChainTokenCheckerMock{},
-	)
+	esdtStorage := createNewESDTDataStorageHandlerWithArgs(multiTransfer.globalSettingsHandler, multiTransfer.accounts, enableEpochsHandler, &mock.CrossChainTokenCheckerMock{})
 	multiTransfer.esdtStorageHandler = esdtStorage
 
 	payableChecker, _ := NewPayableCheckFunc(
