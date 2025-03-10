@@ -471,11 +471,13 @@ func (e *esdtDataStorage) removeMetaDataFromSystemAccount(esdtTokenKey []byte, n
 	if err != nil {
 		return err
 	}
+
 	esdtNFTTokenKey := computeESDTNFTTokenKey(esdtTokenKey, nonce)
 	err = systemAcc.AccountDataHandler().SaveKeyValue(esdtNFTTokenKey, nil)
 	if err != nil {
 		return err
 	}
+
 	return e.accounts.SaveAccount(systemAcc)
 }
 
