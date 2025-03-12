@@ -1,6 +1,6 @@
 module github.com/multiversx/mx-chain-vm-common-go
 
-replace github.com/multiversx/mx-chain-core-go => github.com/multiversx/mx-chain-core-sovereign-go v1.2.24-sov
+replace github.com/multiversx/mx-chain-core-go => github.com/multiversx/mx-chain-core-sovereign-go v1.0.0-sov
 
 go 1.20
 
