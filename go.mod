@@ -1,8 +1,8 @@
 module github.com/multiversx/mx-chain-vm-common-go
 
-replace github.com/multiversx/mx-chain-core-go => github.com/multiversx/mx-chain-core-sovereign-go v1.2.25-0.20250410112225-9b4402144b11
-
 go 1.20
+
+replace github.com/multiversx/mx-chain-core-go => github.com/multiversx/mx-chain-core-sovereign-go v1.2.25-0.20250410112225-9b4402144b11
 
 require (
 	github.com/ethereum/go-ethereum v1.13.15
