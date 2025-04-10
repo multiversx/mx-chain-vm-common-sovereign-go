@@ -110,3 +110,7 @@ type ArgsMigrateDataTrieLeaves struct {
 	NewVersion   core.TrieNodeVersion
 	TrieMigrator DataTrieMigrator
 }
+
+func GetEVMContractCodeMetadata() CodeMetadata {
+	return CodeMetadata{Payable: false, PayableBySC: false, Upgradeable: false, Readable: false, Guarded: false}
+}

@@ -33,3 +33,6 @@ var ErrNotEnoughArguments = errors.New("not enough arguments")
 
 // ErrNilMarshalizer signals that marshaller is nil
 var ErrNilMarshalizer = errors.New("nil marshaller")
+
+// ErrUnexpectedInputSize signals that the input does not meet the required size
+var ErrUnexpectedInputSize = errors.New("unexpected input size")
