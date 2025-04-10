@@ -1,6 +1,6 @@
 module github.com/multiversx/mx-chain-vm-common-go
 
-replace github.com/multiversx/mx-chain-core-go => github.com/multiversx/mx-chain-core-sovereign-go v1.0.0-sov
+replace github.com/multiversx/mx-chain-core-go => github.com/multiversx/mx-chain-core-sovereign-go v1.2.25-0.20250410112225-9b4402144b11
 
 go 1.20
 
@@ -9,7 +9,7 @@ require (
 	github.com/mitchellh/mapstructure v1.4.1
 	github.com/multiversx/mx-chain-core-go v1.2.24-0.20241119082458-e2451e147ab1
 	github.com/multiversx/mx-chain-logger-go v1.0.15-0.20240508072523-3f00a726af57
-	github.com/multiversx/mx-sdk-abi-go v0.0.0-00010101000000-000000000000
+	github.com/multiversx/mx-sdk-abi-go v0.3.1-0.20240912062928-8502f4c3b37c
 	github.com/stretchr/testify v1.8.4
 )
 
@@ -43,7 +43,3 @@ require (
 )
 
 replace github.com/gogo/protobuf => github.com/multiversx/protobuf v1.3.2
-
-replace github.com/multiversx/mx-chain-core-go => github.com/buidly/mx-evm-chain-core-go v0.0.0-20241218164003-125e62918c9a
-
-replace github.com/multiversx/mx-sdk-abi-go => github.com/buidly/mx-evm-sdk-abi-go v0.0.0-20240912062928-8502f4c3b37c
