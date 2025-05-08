@@ -322,6 +322,8 @@ func convertToGlobalSettingsHandlerTokenType(esdtType uint32) (uint32, error) {
 		return uint32(dynamicSFT), nil
 	case uint32(core.DynamicMeta):
 		return uint32(dynamicMeta), nil
+	case uint32(100):
+		return uint32(101), nil
 	default:
 		return math.MaxUint32, fmt.Errorf("invalid esdt type: %d", esdtType)
 	}
