@@ -161,7 +161,7 @@ func TestEsdtFreezeWipe_WipeShouldDecreaseLiquidityIfFlagIsEnabled(t *testing.T)
 	}
 
 	marshaller := &mock.MarshalizerMock{}
-	wipe, _ := NewESDTFreezeWipeFunc(esdtStorage, &mock.EnableEpochsHandlerStub{}, marshaller, false, true, []byte{})
+	wipe, _ := NewESDTFreezeWipeFunc(esdtStorage, &mock.EnableEpochsHandlerStub{}, marshaller, false, true, esdtPrefix)
 
 	acnt := mock.NewUserAccount([]byte("dst"))
 	metaData := ESDTUserMetadata{Frozen: true}

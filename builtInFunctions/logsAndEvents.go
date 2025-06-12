@@ -81,8 +81,8 @@ func newEntryForESDT(identifier, tokenID []byte, nonce uint64, value *big.Int, a
 
 func extractTokenIdentifierAndNonceESDTWipe(esdtPrefix []byte, args []byte) ([]byte, uint64) {
 	argsSplit := bytes.Split(args, []byte(esdtIdentifierSeparator))
-	if len(argsSplit) < 2 ||
-		len(argsSplit) < 3 && len(esdtPrefix) != 0 {
+	invalidLenForArgsWithPrefix := len(argsSplit) < 3 && len(esdtPrefix) != 0
+	if len(argsSplit) < 2 || invalidLenForArgsWithPrefix {
 		return args, 0
 	}
 
