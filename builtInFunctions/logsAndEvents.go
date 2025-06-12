@@ -79,18 +79,29 @@ func newEntryForESDT(identifier, tokenID []byte, nonce uint64, value *big.Int, a
 	return logEntry
 }
 
-func extractTokenIdentifierAndNonceESDTWipe(args []byte) ([]byte, uint64) {
+func extractTokenIdentifierAndNonceESDTWipe(esdtPrefix []byte, args []byte) ([]byte, uint64) {
 	argsSplit := bytes.Split(args, []byte(esdtIdentifierSeparator))
-	if len(argsSplit) < 2 {
+	if len(argsSplit) < 2 ||
+		len(argsSplit) < 3 && len(esdtPrefix) != 0 {
 		return args, 0
 	}
 
-	if len(argsSplit[1]) <= esdtRandomSequenceLength {
+	var tokenId []byte
+	var randSeqNonce []byte
+	if len(esdtPrefix) == 0 {
+		tokenId = argsSplit[0]
+		randSeqNonce = argsSplit[1]
+	} else {
+		tokenId = append(append(argsSplit[0], esdtIdentifierSeparator...), argsSplit[1]...)
+		randSeqNonce = argsSplit[2]
+	}
+
+	if len(randSeqNonce) <= esdtRandomSequenceLength {
 		return args, 0
 	}
 
-	identifier := []byte(fmt.Sprintf("%s-%s", argsSplit[0], argsSplit[1][:esdtRandomSequenceLength]))
-	nonce := big.NewInt(0).SetBytes(argsSplit[1][esdtRandomSequenceLength:])
+	identifier := []byte(fmt.Sprintf("%s-%s", tokenId, randSeqNonce[:esdtRandomSequenceLength]))
+	nonce := big.NewInt(0).SetBytes(randSeqNonce[esdtRandomSequenceLength:])
 
 	return identifier, nonce.Uint64()
 }
