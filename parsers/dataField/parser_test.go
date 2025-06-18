@@ -218,6 +218,12 @@ func TestParseBlockingOperationESDT(t *testing.T) {
 	t.Run("ESDTSetNewURIs", func(t *testing.T) {
 		t.Parallel()
 
+		dataField := []byte("ESDTSetNewURIs@53434156414e4745522d616635373661@02@68747470733a2f2f697066732e696f2f697066732f516d596a7956366e515932735569617041326b6e396a5175485a6e57694b73577a683937594d664c375267434e47")
+		res := parser.Parse(dataField, sender, sender, 3)
+		require.Equal(t, &ResponseParseData{
+			Operation: core.ESDTSetNewURIs,
+			Tokens:    []string{"SCAVANGER-af576a-02"},
+		}, res)
 	})
 }
 
