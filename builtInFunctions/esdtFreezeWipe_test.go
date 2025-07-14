@@ -6,17 +6,20 @@ import (
 
 	"github.com/multiversx/mx-chain-core-go/core"
 	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+
+	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/multiversx/mx-chain-vm-common-go/mock"
 )
+
+var esdtPrefix = []byte("")
 
 func TestESDTFreezeWipe_ProcessBuiltInFunctionErrors(t *testing.T) {
 	t.Parallel()
 
 	marshaller := &mock.MarshalizerMock{}
-	freeze, _ := NewESDTFreezeWipeFunc(createNewESDTDataStorageHandler(), &mock.EnableEpochsHandlerStub{}, marshaller, true, false)
+	freeze, _ := NewESDTFreezeWipeFunc(createNewESDTDataStorageHandler(), &mock.EnableEpochsHandlerStub{}, marshaller, true, false, esdtPrefix)
 	_, err := freeze.ProcessBuiltinFunction(nil, nil, nil)
 	assert.Equal(t, err, ErrNilVmInput)
 
@@ -75,7 +78,7 @@ func TestESDTFreezeWipe_ProcessBuiltInFunction(t *testing.T) {
 	t.Parallel()
 
 	marshaller := &mock.MarshalizerMock{}
-	freeze, _ := NewESDTFreezeWipeFunc(createNewESDTDataStorageHandler(), &mock.EnableEpochsHandlerStub{}, marshaller, true, false)
+	freeze, _ := NewESDTFreezeWipeFunc(createNewESDTDataStorageHandler(), &mock.EnableEpochsHandlerStub{}, marshaller, true, false, esdtPrefix)
 	_, err := freeze.ProcessBuiltinFunction(nil, nil, nil)
 	assert.Equal(t, err, ErrNilVmInput)
 
@@ -105,7 +108,7 @@ func TestESDTFreezeWipe_ProcessBuiltInFunction(t *testing.T) {
 	esdtUserData := ESDTUserMetadataFromBytes(esdtToken.Properties)
 	assert.True(t, esdtUserData.Frozen)
 
-	unFreeze, _ := NewESDTFreezeWipeFunc(createNewESDTDataStorageHandler(), &mock.EnableEpochsHandlerStub{}, marshaller, false, false)
+	unFreeze, _ := NewESDTFreezeWipeFunc(createNewESDTDataStorageHandler(), &mock.EnableEpochsHandlerStub{}, marshaller, false, false, esdtPrefix)
 	_, err = unFreeze.ProcessBuiltinFunction(nil, acnt, input)
 	assert.Nil(t, err)
 
@@ -116,7 +119,7 @@ func TestESDTFreezeWipe_ProcessBuiltInFunction(t *testing.T) {
 	assert.False(t, esdtUserData.Frozen)
 
 	// cannot wipe if account is not frozen
-	wipe, _ := NewESDTFreezeWipeFunc(createNewESDTDataStorageHandler(), &mock.EnableEpochsHandlerStub{}, marshaller, false, true)
+	wipe, _ := NewESDTFreezeWipeFunc(createNewESDTDataStorageHandler(), &mock.EnableEpochsHandlerStub{}, marshaller, false, true, esdtPrefix)
 	_, err = wipe.ProcessBuiltinFunction(nil, acnt, input)
 	assert.Equal(t, ErrCannotWipeAccountNotFrozen, err)
 
@@ -134,7 +137,7 @@ func TestESDTFreezeWipe_ProcessBuiltInFunction(t *testing.T) {
 	err = acnt.AccountDataHandler().SaveKeyValue(esdtKey, esdtTokenBytes)
 	assert.NoError(t, err)
 
-	wipe, _ = NewESDTFreezeWipeFunc(createNewESDTDataStorageHandler(), &mock.EnableEpochsHandlerStub{}, marshaller, false, true)
+	wipe, _ = NewESDTFreezeWipeFunc(createNewESDTDataStorageHandler(), &mock.EnableEpochsHandlerStub{}, marshaller, false, true, esdtPrefix)
 	vmOutput, err := wipe.ProcessBuiltinFunction(nil, acnt, input)
 	assert.NoError(t, err)
 
@@ -158,7 +161,7 @@ func TestEsdtFreezeWipe_WipeShouldDecreaseLiquidityIfFlagIsEnabled(t *testing.T)
 	}
 
 	marshaller := &mock.MarshalizerMock{}
-	wipe, _ := NewESDTFreezeWipeFunc(esdtStorage, &mock.EnableEpochsHandlerStub{}, marshaller, false, true)
+	wipe, _ := NewESDTFreezeWipeFunc(esdtStorage, &mock.EnableEpochsHandlerStub{}, marshaller, false, true, esdtPrefix)
 
 	acnt := mock.NewUserAccount([]byte("dst"))
 	metaData := ESDTUserMetadata{Frozen: true}
