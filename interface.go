@@ -36,6 +36,9 @@ type BlockchainHook interface {
 	// LastTimeStamp returns the timeStamp from the last committed block
 	LastTimeStamp() uint64
 
+	// LastTimeStampMs returns the timeStamp from the last committed block in milliseconds
+	LastTimeStampMs() uint64
+
 	// LastRandomSeed returns the random seed from the last committed block
 	LastRandomSeed() []byte
 
@@ -54,6 +57,9 @@ type BlockchainHook interface {
 	// CurrentTimeStamp return the timestamp from the current block
 	CurrentTimeStamp() uint64
 
+	// CurrentTimeStampMs returns the timeStamp from the current block in milliseconds
+	CurrentTimeStampMs() uint64
+
 	// CurrentRandomSeed returns the random seed from the current header
 	CurrentRandomSeed() []byte
 
@@ -63,8 +69,8 @@ type BlockchainHook interface {
 	// RoundTime returns the duration of a round
 	RoundTime() uint64
 
-	// EpochStartBlockTimeStamp returns the timestamp of the first block of the current epoch
-	EpochStartBlockTimeStamp() uint64
+	// EpochStartBlockTimeStampMs returns the timestamp of the first block of the current epoch in milliseconds
+	EpochStartBlockTimeStampMs() uint64
 
 	// EpochStartBlockNonce returns the nonce of the first block of the current epoch
 	EpochStartBlockNonce() uint64
