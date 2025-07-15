@@ -6,6 +6,7 @@ import (
 
 	"github.com/multiversx/mx-chain-core-go/core"
 	"github.com/multiversx/mx-chain-core-go/core/check"
+
 	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
 )
 
@@ -17,6 +18,7 @@ type esdtFreezeWipe struct {
 	keyPrefix           []byte
 	wipe                bool
 	freeze              bool
+	selfESDTPrefix      []byte
 }
 
 // NewESDTFreezeWipeFunc returns the esdt freeze/un-freeze/wipe built-in function component
@@ -26,6 +28,7 @@ func NewESDTFreezeWipeFunc(
 	marshaller vmcommon.Marshalizer,
 	freeze bool,
 	wipe bool,
+	selfESDTPrefix []byte,
 ) (*esdtFreezeWipe, error) {
 	if check.IfNil(marshaller) {
 		return nil, ErrNilMarshalizer
@@ -44,6 +47,7 @@ func NewESDTFreezeWipeFunc(
 		keyPrefix:           []byte(baseESDTKeyPrefix),
 		freeze:              freeze,
 		wipe:                wipe,
+		selfESDTPrefix:      selfESDTPrefix,
 	}
 
 	return e, nil
@@ -75,7 +79,7 @@ func (e *esdtFreezeWipe) ProcessBuiltinFunction(
 	}
 
 	esdtTokenKey := append(e.keyPrefix, vmInput.Arguments[0]...)
-	identifier, nonce := extractTokenIdentifierAndNonceESDTWipe(vmInput.Arguments[0])
+	identifier, nonce := extractTokenIdentifierAndNonceESDTWipe(e.selfESDTPrefix, vmInput.Arguments[0])
 
 	var amount *big.Int
 	var err error

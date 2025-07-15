@@ -351,7 +351,7 @@ func (b *builtInFuncCreator) CreateBuiltInFunctionContainer() error {
 		return err
 	}
 
-	newFunc, err = NewESDTFreezeWipeFunc(b.esdtStorageHandler, b.enableEpochsHandler, b.marshaller, true, false)
+	newFunc, err = NewESDTFreezeWipeFunc(b.esdtStorageHandler, b.enableEpochsHandler, b.marshaller, true, false, b.selfESDTPrefix)
 	if err != nil {
 		return err
 	}
@@ -360,7 +360,7 @@ func (b *builtInFuncCreator) CreateBuiltInFunctionContainer() error {
 		return err
 	}
 
-	newFunc, err = NewESDTFreezeWipeFunc(b.esdtStorageHandler, b.enableEpochsHandler, b.marshaller, false, false)
+	newFunc, err = NewESDTFreezeWipeFunc(b.esdtStorageHandler, b.enableEpochsHandler, b.marshaller, false, false, b.selfESDTPrefix)
 	if err != nil {
 		return err
 	}
@@ -369,7 +369,7 @@ func (b *builtInFuncCreator) CreateBuiltInFunctionContainer() error {
 		return err
 	}
 
-	newFunc, err = NewESDTFreezeWipeFunc(b.esdtStorageHandler, b.enableEpochsHandler, b.marshaller, false, true)
+	newFunc, err = NewESDTFreezeWipeFunc(b.esdtStorageHandler, b.enableEpochsHandler, b.marshaller, false, true, b.selfESDTPrefix)
 	if err != nil {
 		return err
 	}
