@@ -9,6 +9,7 @@ import (
 	"github.com/multiversx/mx-chain-core-go/core"
 	"github.com/multiversx/mx-chain-core-go/core/check"
 	"github.com/multiversx/mx-chain-core-go/data/esdt"
+
 	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
 )
 
@@ -60,6 +61,9 @@ func NewESDTNFTMultiTransferFunc(
 	}
 	if check.IfNil(esdtStorageHandler) {
 		return nil, ErrNilESDTNFTStorageHandler
+	}
+	if !vmcommon.ValidateToken(baseTokenID) {
+		return nil, ErrInvalidTokenID
 	}
 
 	e := &esdtNFTMultiTransfer{
