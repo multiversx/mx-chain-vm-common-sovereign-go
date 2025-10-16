@@ -2,16 +2,18 @@ package ethToMvx
 
 import (
 	"fmt"
+	"math/big"
+	"reflect"
+
 	ethAbi "github.com/ethereum/go-ethereum/accounts/abi"
 	ethCommon "github.com/ethereum/go-ethereum/common"
 	"github.com/multiversx/mx-chain-core-go/core"
+	mvxAbi "github.com/multiversx/mx-sdk-abi-go/abi"
+
 	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
 	"github.com/multiversx/mx-chain-vm-common-go/builtInFunctions/convertEncoding/common"
 	"github.com/multiversx/mx-chain-vm-common-go/builtInFunctions/convertEncoding/eth"
 	"github.com/multiversx/mx-chain-vm-common-go/builtInFunctions/convertEncoding/mvx"
-	mvxAbi "github.com/multiversx/mx-sdk-abi-go/abi"
-	"math/big"
-	"reflect"
 )
 
 func AttachValuesToMultiversXAbi(context *common.EncodingContext, multiversXAbi mvx.AbiArguments, ethereumAbi ethAbi.Arguments, values []interface{}) error {
@@ -80,7 +82,7 @@ func attachArray(context *common.EncodingContext, arrayValue *mvxAbi.ArrayValue,
 	if err != nil {
 		return err
 	}
-	if len(items) != int(arrayValue.Size) {
+	if len(items) != int(arrayValue.Length) {
 		return ErrInvalidValueSizeForArrayAttach
 	}
 	arrayValue.Items = items

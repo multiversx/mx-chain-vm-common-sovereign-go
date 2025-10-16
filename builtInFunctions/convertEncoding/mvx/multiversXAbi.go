@@ -2,9 +2,11 @@ package mvx
 
 import (
 	"fmt"
-	convertCommon "github.com/multiversx/mx-chain-vm-common-go/builtInFunctions/convertEncoding/common"
-	mvxAbi "github.com/multiversx/mx-sdk-abi-go/abi"
 	"strings"
+
+	mvxAbi "github.com/multiversx/mx-sdk-abi-go/abi"
+
+	convertCommon "github.com/multiversx/mx-chain-vm-common-go/builtInFunctions/convertEncoding/common"
 )
 
 func BuildMultiversXAbi(arguments convertCommon.Arguments) (AbiArguments, error) {
@@ -96,7 +98,7 @@ func argumentToArrayValue(argument *convertCommon.Argument) (mvxAbi.SingleValue,
 	if err != nil {
 		return nil, err
 	}
-	return &mvxAbi.ArrayValue{Size: uint32(arraySize), ItemCreator: singleValueItemCreator(singleValue)}, nil
+	return &mvxAbi.ArrayValue{Length: uint32(arraySize), ItemCreator: singleValueItemCreator(singleValue)}, nil
 }
 
 func argumentToStructValue(argument *convertCommon.Argument) (mvxAbi.SingleValue, error) {

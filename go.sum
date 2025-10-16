@@ -134,8 +134,8 @@ github.com/multiversx/mx-chain-logger-go v1.1.0 h1:97x84A6L4RfCa6YOx1HpAFxZp1cf/
 github.com/multiversx/mx-chain-logger-go v1.1.0/go.mod h1:K9XgiohLwOsNACETMNL0LItJMREuEvTH6NsoXWXWg7g=
 github.com/multiversx/mx-components-big-int v1.0.0 h1:Wkr8lSzK2nDqixOrrBa47VNuqdhV1m/aJhaP1EMaiS8=
 github.com/multiversx/mx-components-big-int v1.0.0/go.mod h1:maIEMgHlNE2u78JaDD0oLzri+ShgU4okHfzP3LWGdQM=
-github.com/multiversx/mx-sdk-abi-go v0.3.0 h1:WX7OUhYZbgaSvP4HE23DjFv5SMZ1/5F4Vp7K83B+VHY=
-github.com/multiversx/mx-sdk-abi-go v0.3.0/go.mod h1:++ds6BB47LrXl8a9N2VGRBzHCfl6kkxRCHb31a5z61g=
+github.com/multiversx/mx-sdk-abi-go v0.3.1-0.20250423092559-f01fdd10b35d h1:1GZdV0gNxxOBQG3BhJmTn0/a57o1pv2MstFL16eXbnI=
+github.com/multiversx/mx-sdk-abi-go v0.3.1-0.20250423092559-f01fdd10b35d/go.mod h1:++ds6BB47LrXl8a9N2VGRBzHCfl6kkxRCHb31a5z61g=
 github.com/multiversx/protobuf v1.3.2 h1:RaNkxvGTGbA0lMcnHAN24qE1G1i+Xs5yHA6MDvQ4mSM=
 github.com/multiversx/protobuf v1.3.2/go.mod h1:SlYgWuQ5SjCEi6WLHjHCa1yvBfUnHcTbrrZtXPKa29o=
 github.com/nxadm/tail v1.4.4/go.mod h1:kenIhsEOeOJmVchQTgglprH7qJGnHDVpk1VPCcaMI8A=

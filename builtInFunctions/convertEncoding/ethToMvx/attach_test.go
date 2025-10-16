@@ -1,14 +1,16 @@
 package ethToMvx
 
 import (
+	"math/big"
+	"testing"
+
 	ethCommon "github.com/ethereum/go-ethereum/common"
+	mvxAbi "github.com/multiversx/mx-sdk-abi-go/abi"
+	"github.com/stretchr/testify/require"
+
 	convertCommon "github.com/multiversx/mx-chain-vm-common-go/builtInFunctions/convertEncoding/common"
 	"github.com/multiversx/mx-chain-vm-common-go/builtInFunctions/convertEncoding/eth"
 	"github.com/multiversx/mx-chain-vm-common-go/builtInFunctions/convertEncoding/mvx"
-	mvxAbi "github.com/multiversx/mx-sdk-abi-go/abi"
-	"github.com/stretchr/testify/require"
-	"math/big"
-	"testing"
 )
 
 func TestAttachValuesToMultiversXAbi(t *testing.T) {
@@ -28,7 +30,7 @@ func TestAttachValuesToMultiversXAbi(t *testing.T) {
 		&mvxAbi.AddressValue{},
 		&mvxAbi.StringValue{},
 		&mvxAbi.ListValue{ItemCreator: func() mvxAbi.SingleValue { return &mvxAbi.StringValue{} }},
-		&mvxAbi.ArrayValue{Size: 2, ItemCreator: func() mvxAbi.SingleValue { return &mvxAbi.StringValue{} }},
+		&mvxAbi.ArrayValue{Length: 2, ItemCreator: func() mvxAbi.SingleValue { return &mvxAbi.StringValue{} }},
 		&mvxAbi.StructValue{Fields: []mvxAbi.Field{{Value: &mvxAbi.U8Value{}}}},
 		&mvxAbi.OptionValue{Value: &mvxAbi.U8Value{}},
 		&mvxAbi.OptionalValue{Value: &mvxAbi.U8Value{}},

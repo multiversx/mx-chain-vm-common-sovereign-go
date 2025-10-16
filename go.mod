@@ -9,7 +9,7 @@ require (
 	github.com/mitchellh/mapstructure v1.4.1
 	github.com/multiversx/mx-chain-core-go v1.4.0
 	github.com/multiversx/mx-chain-logger-go v1.1.0
-	github.com/multiversx/mx-sdk-abi-go v0.3.0
+	github.com/multiversx/mx-sdk-abi-go v0.3.1-0.20250423092559-f01fdd10b35d
 	github.com/stretchr/testify v1.8.4
 )
 

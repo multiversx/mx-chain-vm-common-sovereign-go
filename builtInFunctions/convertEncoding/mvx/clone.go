@@ -2,6 +2,7 @@ package mvx
 
 import (
 	"fmt"
+
 	mvxAbi "github.com/multiversx/mx-sdk-abi-go/abi"
 )
 
@@ -66,7 +67,7 @@ func cloneListValue(listValue *mvxAbi.ListValue) (*mvxAbi.ListValue, error) {
 }
 
 func cloneArrayValue(arrayValue *mvxAbi.ArrayValue) (*mvxAbi.ArrayValue, error) {
-	return &mvxAbi.ArrayValue{Size: arrayValue.Size, ItemCreator: arrayValue.ItemCreator}, nil
+	return &mvxAbi.ArrayValue{Length: arrayValue.Length, ItemCreator: arrayValue.ItemCreator}, nil
 }
 
 func cloneStructValue(structValue *mvxAbi.StructValue) (*mvxAbi.StructValue, error) {
