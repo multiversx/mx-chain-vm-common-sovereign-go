@@ -174,7 +174,7 @@ func attachUint(mvxAbiArgument mvx.AbiArgument, ethArgument *ethAbi.Type, value 
 		}
 	case *mvxAbi.U32Value:
 		if ethArgument.Size != eth.Size32 {
-			value = uint32(asUint64(value))
+			convertedMvxAbiArgument.Value = uint32(asUint64(value))
 		} else {
 			convertedMvxAbiArgument.Value = value.(uint32)
 		}
@@ -205,13 +205,13 @@ func attachInt(mvxAbiArgument mvx.AbiArgument, ethArgument *ethAbi.Type, value i
 		}
 	case *mvxAbi.I32Value:
 		if ethArgument.Size != eth.Size32 {
-			value = int32(asInt64(value))
+			convertedMvxAbiArgument.Value = int32(asInt64(value))
 		} else {
 			convertedMvxAbiArgument.Value = value.(int32)
 		}
 	case *mvxAbi.I64Value:
 		if ethArgument.Size != eth.Size64 {
-			value = asInt64(value)
+			convertedMvxAbiArgument.Value = asInt64(value)
 		} else {
 			convertedMvxAbiArgument.Value = value.(int64)
 		}
