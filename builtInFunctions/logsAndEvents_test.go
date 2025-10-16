@@ -1,13 +1,13 @@
 package builtInFunctions
 
 import (
-	"encoding/hex"
 	"math/big"
 	"testing"
 
 	"github.com/multiversx/mx-chain-core-go/core"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
 	"github.com/stretchr/testify/require"
+
+	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
 )
 
 func TestNewEntryForNFT(t *testing.T) {
@@ -26,17 +26,56 @@ func TestNewEntryForNFT(t *testing.T) {
 func TestExtractTokenIdentifierAndNonceESDTWipe(t *testing.T) {
 	t.Parallel()
 
-	hexArg := "534b4537592d37336262636404"
-	args, _ := hex.DecodeString(hexArg)
-
-	identifier, nonce := extractTokenIdentifierAndNonceESDTWipe(args)
-	require.Equal(t, uint64(4), nonce)
-	require.Equal(t, []byte("SKE7Y-73bbcd"), identifier)
-
-	hexArg = "5745474c442d376662623930"
-	args, _ = hex.DecodeString(hexArg)
-
-	identifier, nonce = extractTokenIdentifierAndNonceESDTWipe(args)
+	prefix := []byte{}
+	token := []byte("TOKEN")
+	identifier, nonce := extractTokenIdentifierAndNonceESDTWipe(prefix, token)
 	require.Equal(t, uint64(0), nonce)
-	require.Equal(t, []byte("WEGLD-7fbb90"), identifier)
+	require.Equal(t, token, identifier)
+
+	prefix = []byte("prf")
+	token = []byte("TOKEN")
+	identifier, nonce = extractTokenIdentifierAndNonceESDTWipe(prefix, token)
+	require.Equal(t, uint64(0), nonce)
+	require.Equal(t, token, identifier)
+
+	prefix = []byte("prf")
+	token = []byte("TOKEN-1a2b3c")
+	identifier, nonce = extractTokenIdentifierAndNonceESDTWipe(prefix, token)
+	require.Equal(t, uint64(0), nonce)
+	require.Equal(t, token, identifier)
+
+	prefix = []byte{}
+	token = []byte("TOKEN-1a2b3c") // no nonce
+	identifier, nonce = extractTokenIdentifierAndNonceESDTWipe(prefix, token)
+	require.Equal(t, uint64(0), nonce)
+	require.Equal(t, token, identifier)
+
+	prefix = []byte{}
+	token = []byte("TOKEN-1a2b3c")
+	tokenNonce := big.NewInt(1)
+	tokenWithNonce := append(token, tokenNonce.Bytes()...)
+	identifier, nonce = extractTokenIdentifierAndNonceESDTWipe(prefix, tokenWithNonce)
+	require.Equal(t, tokenNonce.Uint64(), nonce)
+	require.Equal(t, token, identifier)
+
+	prefix = []byte{}
+	token = []byte("prf-TOKEN-a1b2c3")
+	identifier, nonce = extractTokenIdentifierAndNonceESDTWipe(prefix, token)
+	require.Equal(t, uint64(0), nonce)
+	require.Equal(t, token, identifier)
+
+	prefix = []byte("prf")
+	token = []byte("prf-TOKEN-a1b2c3") // no nonce
+	identifier, nonce = extractTokenIdentifierAndNonceESDTWipe(prefix, token)
+	require.Equal(t, uint64(0), nonce)
+	require.Equal(t, token, identifier)
+
+	prefix = []byte("prf")
+	token = []byte("prf-TOKEN-a1b2c3")
+	tokenNonce = big.NewInt(2)
+	tokenWithNonce = append(token, tokenNonce.Bytes()...)
+	identifier, nonce = extractTokenIdentifierAndNonceESDTWipe(prefix, tokenWithNonce)
+	require.Equal(t, tokenNonce.Uint64(), nonce)
+	require.Equal(t, token, identifier)
+
 }
