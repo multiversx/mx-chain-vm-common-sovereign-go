@@ -52,6 +52,10 @@ type OutputAccount struct {
 	// This field will be populated when a new SC must be created after the transaction.
 	Code []byte
 
+	// CodeHash is the hash of the code of a smart contract account.
+	// Like "Code", this field will be populated when a new SC must be created after the transaction.
+	CodeHash []byte
+
 	// CodeMetadata is the metadata of the code
 	// Like "Code", this field will be populated when a new SC must be created after the transaction.
 	CodeMetadata []byte
@@ -77,6 +81,9 @@ type OutputAccount struct {
 
 	// BytesConsumedByTxAsNetworking for this output account
 	BytesConsumedByTxAsNetworking uint64
+
+	// IsContractCreatedInTransaction specifies whether the contract account has been created in the current transaction
+	IsContractCreatedInTransaction bool
 }
 
 // OutputTransfer contains the fields needed to create transfers to another shard

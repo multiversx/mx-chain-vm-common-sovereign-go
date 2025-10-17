@@ -129,6 +129,15 @@ type BlockchainHook interface {
 	// ExecuteSmartContractCallOnOtherVM runs contract on another VM
 	ExecuteSmartContractCallOnOtherVM(input *ContractCallInput) (*VMOutput, error)
 
+	// ChainID returns the chain ID
+	ChainID() []byte
+
+	// SaveAliasAddress saves the given alias address
+	SaveAliasAddress(request *AliasSaveRequest) error
+
+	// RequestAddress returns the requested address
+	RequestAddress(request *AddressRequest) (*AddressResponse, error)
+
 	// IsInterfaceNil returns true if there is no value under the interface
 	IsInterfaceNil() bool
 }
@@ -376,6 +385,8 @@ type AccountsAdapter interface {
 	JournalLen() int
 	RevertToSnapshot(snapshot int) error
 	GetCode(codeHash []byte) []byte
+	SaveAliasAddress(request *AliasSaveRequest) error
+	RequestAddress(request *AddressRequest) (*AddressResponse, error)
 
 	RootHash() ([]byte, error)
 	IsInterfaceNil() bool

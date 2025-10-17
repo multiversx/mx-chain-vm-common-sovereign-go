@@ -22,6 +22,8 @@ type AccountsStub struct {
 	SetStateCheckpointCalled func(rootHash []byte)
 	IsPruningEnabledCalled   func() bool
 	GetCodeCalled            func([]byte) []byte
+	SaveAliasAddressCalled   func(request *vmcommon.AliasSaveRequest) error
+	RequestAddressCalled     func(request *vmcommon.AddressRequest) (*vmcommon.AddressResponse, error)
 }
 
 // GetCode -
@@ -125,6 +127,24 @@ func (as *AccountsStub) IsPruningEnabled() bool {
 	}
 
 	return false
+}
+
+// SaveAliasAddress -
+func (as *AccountsStub) SaveAliasAddress(request *vmcommon.AliasSaveRequest) error {
+	if as.SaveAliasAddressCalled != nil {
+		return as.SaveAliasAddressCalled(request)
+	}
+
+	return errNotImplemented
+}
+
+// RequestAddress -
+func (as *AccountsStub) RequestAddress(request *vmcommon.AddressRequest) (*vmcommon.AddressResponse, error) {
+	if as.RequestAddressCalled != nil {
+		return as.RequestAddressCalled(request)
+	}
+
+	return nil, errNotImplemented
 }
 
 // IsInterfaceNil returns true if there is no value under the interface
