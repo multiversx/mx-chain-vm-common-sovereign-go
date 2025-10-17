@@ -129,6 +129,15 @@ type BlockchainHook interface {
 	// ExecuteSmartContractCallOnOtherVM runs contract on another VM
 	ExecuteSmartContractCallOnOtherVM(input *ContractCallInput) (*VMOutput, error)
 
+	// ChainID returns the chain ID
+	ChainID() []byte
+
+	// SaveAliasAddress saves the given alias address
+	SaveAliasAddress(request *AliasSaveRequest) error
+
+	// RequestAddress returns the requested address
+	RequestAddress(request *AddressRequest) (*AddressResponse, error)
+
 	// IsInterfaceNil returns true if there is no value under the interface
 	IsInterfaceNil() bool
 }
@@ -165,9 +174,6 @@ type LegacyBlockchainHook interface {
 
 	// GetStateRootHash returns the state root hash from the last committed block
 	GetStateRootHash() []byte
-
-	// ChainID returns the chain ID
-	ChainID() []byte
 
 	// CurrentNonce returns the nonce from the current block
 	CurrentNonce() uint64
@@ -234,12 +240,6 @@ type LegacyBlockchainHook interface {
 
 	// ExecuteSmartContractCallOnOtherVM runs contract on another VM
 	ExecuteSmartContractCallOnOtherVM(input *ContractCallInput) (*VMOutput, error)
-
-	// SaveAliasAddress saves the given alias address
-	SaveAliasAddress(request *AliasSaveRequest) error
-
-	// RequestAddress returns the requested address
-	RequestAddress(request *AddressRequest) (*AddressResponse, error)
 
 	// IsInterfaceNil returns true if there is no value under the interface
 	IsInterfaceNil() bool
