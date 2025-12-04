@@ -6,10 +6,11 @@ import (
 
 	"github.com/multiversx/mx-chain-core-go/core"
 	"github.com/multiversx/mx-chain-core-go/core/check"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+
+	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/multiversx/mx-chain-vm-common-go/mock"
 )
 
 func createMockArguments() ArgsCreateBuiltInFunctionContainer {
@@ -28,6 +29,7 @@ func createMockArguments() ArgsCreateBuiltInFunctionContainer {
 		GuardedAccountHandler:             &mock.GuardedAccountHandlerStub{},
 		MaxNumOfAddressesForTransferRole:  100,
 		MapWhiteListedCrossChainAddresses: getWhiteListedAddress(),
+		BaseTokenID:                       []byte(vmcommon.EGLDIdentifier),
 	}
 
 	return args

@@ -9,6 +9,7 @@ import (
 	"github.com/multiversx/mx-chain-core-go/core"
 	"github.com/multiversx/mx-chain-core-go/core/check"
 	"github.com/multiversx/mx-chain-core-go/data/esdt"
+
 	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
 )
 
@@ -38,6 +39,7 @@ func NewESDTNFTMultiTransferFunc(
 	enableEpochsHandler vmcommon.EnableEpochsHandler,
 	roleHandler vmcommon.ESDTRoleHandler,
 	esdtStorageHandler vmcommon.ESDTNFTStorageHandler,
+	baseTokenID []byte,
 ) (*esdtNFTMultiTransfer, error) {
 	if check.IfNil(marshaller) {
 		return nil, ErrNilMarshalizer
@@ -60,6 +62,9 @@ func NewESDTNFTMultiTransferFunc(
 	if check.IfNil(esdtStorageHandler) {
 		return nil, ErrNilESDTNFTStorageHandler
 	}
+	if !vmcommon.ValidateToken(baseTokenID) {
+		return nil, ErrInvalidTokenID
+	}
 
 	e := &esdtNFTMultiTransfer{
 		keyPrefix:      []byte(baseESDTKeyPrefix),
@@ -76,7 +81,7 @@ func NewESDTNFTMultiTransferFunc(
 			enableEpochsHandler:   enableEpochsHandler,
 			marshaller:            marshaller,
 		},
-		baseTokenID: []byte(vmcommon.EGLDIdentifier),
+		baseTokenID: baseTokenID,
 	}
 
 	e.baseActiveHandler.activeHandler = func() bool {
