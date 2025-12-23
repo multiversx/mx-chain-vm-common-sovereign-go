@@ -922,7 +922,7 @@ func TestESDTNFTTransfer_NotEnoughGas(t *testing.T) {
 func extractScResultsFromVmOutput(t testing.TB, vmOutput *vmcommon.VMOutput) (string, [][]byte) {
 	require.NotNil(t, vmOutput)
 	require.Equal(t, 1, len(vmOutput.OutputAccounts))
-	var outputAccount *vmcommon.OutputAccount
+	var outputAccount vmcommon.OutputAccountHandler
 	for _, account := range vmOutput.OutputAccounts {
 		outputAccount = account
 		break
@@ -932,8 +932,8 @@ func extractScResultsFromVmOutput(t testing.TB, vmOutput *vmcommon.VMOutput) (st
 		// suppress next warnings, goland does not know about require.NotNil
 		return "", nil
 	}
-	require.Equal(t, 1, len(outputAccount.OutputTransfers))
-	outputTransfer := outputAccount.OutputTransfers[0]
+	require.Equal(t, 1, len(outputAccount.GetOutputTransfers()))
+	outputTransfer := outputAccount.GetOutputTransfers()[0]
 	split := strings.Split(string(outputTransfer.Data), "@")
 
 	args := make([][]byte, len(split)-1)

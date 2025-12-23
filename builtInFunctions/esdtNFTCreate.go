@@ -38,7 +38,7 @@ type esdtNFTCrossChainData struct {
 }
 
 type esdtNFTCreate struct {
-	baseAlwaysActiveHandler
+	BaseAlwaysActiveHandler
 	keyPrefix                     []byte
 	accounts                      vmcommon.AccountsAdapter
 	marshaller                    vmcommon.Marshalizer

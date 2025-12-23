@@ -14,7 +14,7 @@ import (
 var roleKeyPrefix = []byte(core.ProtectedKeyPrefix + core.ESDTRoleIdentifier + core.ESDTKeyIdentifier)
 
 type esdtRoles struct {
-	baseAlwaysActiveHandler
+	BaseAlwaysActiveHandler
 	set                    bool
 	marshaller             vmcommon.Marshalizer
 	crossChainTokenChecker CrossChainTokenCheckerHandler

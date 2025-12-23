@@ -4,9 +4,10 @@ import (
 	"math/big"
 	"testing"
 
+	"github.com/stretchr/testify/require"
+
 	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
 	"github.com/multiversx/mx-chain-vm-common-go/mock"
-	"github.com/stretchr/testify/require"
 )
 
 func TestNewDeleteUserNameFunc(t *testing.T) {
@@ -98,7 +99,7 @@ func TestDeleteUserName_ProcessBuiltinFunction(t *testing.T) {
 	vmOutput, err := d.ProcessBuiltinFunction(acc, nil, vmInput)
 	require.Nil(t, err)
 	require.Equal(t, len(vmOutput.OutputAccounts), 1)
-	require.Equal(t, vmOutput.OutputAccounts[string(vmInput.RecipientAddr)].OutputTransfers[0].GasLimit, vmInput.GasProvided-d.gasCost)
+	require.Equal(t, vmOutput.OutputAccounts[string(vmInput.RecipientAddr)].GetOutputTransfers()[0].GasLimit, vmInput.GasProvided-d.gasCost)
 
 	vmInput.GasProvided = 0
 	_, err = d.ProcessBuiltinFunction(nil, acc, vmInput)

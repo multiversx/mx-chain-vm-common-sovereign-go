@@ -126,7 +126,7 @@ func TestProcessBuiltInFunctionCallThroughSC(t *testing.T) {
 	require.NotNil(t, vmOutput)
 	require.Equal(t, 1, len(vmOutput.OutputAccounts))
 
-	outputTransfer := vmOutput.OutputAccounts[string(rcvAddr)].OutputTransfers[0]
+	outputTransfer := vmOutput.OutputAccounts[string(rcvAddr)].GetOutputTransfers()[0]
 	require.Equal(t, []byte("ChangeOwnerAddress@3030303030303030303030"), outputTransfer.Data)
 	require.Equal(t, vm.DirectCall, outputTransfer.CallType)
 }

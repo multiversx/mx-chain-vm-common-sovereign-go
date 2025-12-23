@@ -129,6 +129,9 @@ type BlockchainHook interface {
 	// ExecuteSmartContractCallOnOtherVM runs contract on another VM
 	ExecuteSmartContractCallOnOtherVM(input *ContractCallInput) (*VMOutput, error)
 
+	// ChainID returns the chain ID
+	ChainID() []byte
+
 	// IsInterfaceNil returns true if there is no value under the interface
 	IsInterfaceNil() bool
 }
@@ -473,6 +476,8 @@ type BuiltInFunctionFactory interface {
 	SetPayableHandler(handler PayableHandler) error
 	SetBlockchainHook(handler BlockchainDataHook) error
 	CreateBuiltInFunctionContainer() error
+	GasConfig() *GasCost
+	Accounts() AccountsAdapter
 	IsInterfaceNil() bool
 }
 
@@ -533,4 +538,52 @@ type BlockchainDataProvider interface {
 type BlockchainDataHook interface {
 	CurrentRound() uint64
 	IsInterfaceNil() bool
+}
+
+// OutputAccountHandler defines methods for accessing and modifying account
+type OutputAccountHandler interface {
+	GetAddress() []byte
+	GetNonce() uint64
+	GetBalance() *big.Int
+	GetStorageUpdates() map[string]*StorageUpdate
+	GetCode() []byte
+	GetCodeMetadata() []byte
+	GetCodeDeployerAddress() []byte
+	GetBalanceDelta() *big.Int
+	GetOutputTransfers() []OutputTransfer
+	GetGasUsed() uint64
+	GetBytesAddedToStorage() uint64
+	GetBytesDeletedFromStorage() uint64
+	GetBytesConsumedByTxAsNetworking() uint64
+
+	SetAddress(address []byte)
+	SetNonce(nonce uint64)
+	SetBalance(balance *big.Int)
+	SetStorageUpdates(updates map[string]*StorageUpdate)
+	SetCode(code []byte)
+	SetCodeMetadata(metadata []byte)
+	SetCodeDeployerAddress(address []byte)
+	SetBalanceDelta(delta *big.Int)
+	SetOutputTransfers(transfers []OutputTransfer)
+	SetGasUsed(gasUsed uint64)
+	SetBytesAddedToStorage(bytes uint64)
+	SetBytesDeletedFromStorage(bytes uint64)
+	SetBytesConsumedByTxAsNetworking(bytes uint64)
+}
+
+// ContractCallInputHandler defines the behavior expected from a ContractCallInput
+type ContractCallInputHandler interface {
+	GetVMInput() *VMInput
+	GetRecipientAddr() []byte
+	GetFunction() string
+	GetAllowInitFunction() bool
+	SetVMInput(input VMInput)
+	SetRecipientAddr(address []byte)
+}
+
+// ContractCreateInputHandler defines the behavior expected from a ContractCreateInput
+type ContractCreateInputHandler interface {
+	GetVMInput() *VMInput
+	GetContractCode() []byte
+	GetContractCodeMetadata() []byte
 }

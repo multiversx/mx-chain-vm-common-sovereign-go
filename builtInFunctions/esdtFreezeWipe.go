@@ -11,7 +11,7 @@ import (
 )
 
 type esdtFreezeWipe struct {
-	baseAlwaysActiveHandler
+	BaseAlwaysActiveHandler
 	esdtStorageHandler  vmcommon.ESDTNFTStorageHandler
 	enableEpochsHandler vmcommon.EnableEpochsHandler
 	marshaller          vmcommon.Marshalizer

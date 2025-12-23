@@ -25,7 +25,7 @@ func TestBaseActiveHandler_IsActive(t *testing.T) {
 func TestBaseAlwaysActiveHandler_IsActive(t *testing.T) {
 	t.Parallel()
 
-	handler := baseAlwaysActiveHandler{}
+	handler := BaseAlwaysActiveHandler{}
 	assert.False(t, check.IfNil(handler))
 	assert.True(t, handler.IsActive())
 }

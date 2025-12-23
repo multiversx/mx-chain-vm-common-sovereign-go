@@ -126,6 +126,16 @@ func (b *builtInFuncCreator) NFTStorageHandler() vmcommon.SimpleESDTNFTStorageHa
 	return b.esdtStorageHandler
 }
 
+// GasConfig will return the gas config from the built in functions factory
+func (b *builtInFuncCreator) GasConfig() *vmcommon.GasCost {
+	return b.gasConfig
+}
+
+// Accounts will return the accounts from the built in functions factory
+func (b *builtInFuncCreator) Accounts() vmcommon.AccountsAdapter {
+	return b.accounts
+}
+
 // ESDTGlobalSettingsHandler will return the esdt global settings handler from the built in functions factory
 func (b *builtInFuncCreator) ESDTGlobalSettingsHandler() vmcommon.ESDTGlobalSettingsHandler {
 	return b.esdtGlobalSettingsHandler

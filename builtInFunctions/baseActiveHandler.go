@@ -1,15 +1,16 @@
 package builtInFunctions
 
-type baseAlwaysActiveHandler struct {
+// BaseAlwaysActiveHandler defines the base always active handler
+type BaseAlwaysActiveHandler struct {
 }
 
 // IsActive returns true as this built-in function is always active
-func (b baseAlwaysActiveHandler) IsActive() bool {
+func (b BaseAlwaysActiveHandler) IsActive() bool {
 	return trueHandler()
 }
 
 // IsInterfaceNil always returns false
-func (b baseAlwaysActiveHandler) IsInterfaceNil() bool {
+func (b BaseAlwaysActiveHandler) IsInterfaceNil() bool {
 	return false
 }
 

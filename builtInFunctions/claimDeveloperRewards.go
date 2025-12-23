@@ -7,11 +7,12 @@ import (
 
 	"github.com/multiversx/mx-chain-core-go/core/check"
 	"github.com/multiversx/mx-chain-core-go/data/vm"
+
 	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
 )
 
 type claimDeveloperRewards struct {
-	baseAlwaysActiveHandler
+	BaseAlwaysActiveHandler
 	gasCost      uint64
 	mutExecution sync.RWMutex
 }
@@ -87,7 +88,7 @@ func (c *claimDeveloperRewards) ProcessBuiltinFunction(
 		OutputTransfers: []vmcommon.OutputTransfer{outTransfer},
 	}
 
-	vmOutput.OutputAccounts = make(map[string]*vmcommon.OutputAccount)
+	vmOutput.OutputAccounts = make(map[string]vmcommon.OutputAccountHandler)
 	vmOutput.OutputAccounts[string(outputAcc.Address)] = outputAcc
 
 	if check.IfNil(acntSnd) {
@@ -102,7 +103,7 @@ func (c *claimDeveloperRewards) ProcessBuiltinFunction(
 	}
 
 	if vmcommon.IsSmartContractAddress(vmInput.CallerAddr) {
-		vmOutput.OutputAccounts = make(map[string]*vmcommon.OutputAccount)
+		vmOutput.OutputAccounts = make(map[string]vmcommon.OutputAccountHandler)
 	}
 
 	addLogEntryForClaimDeveloperRewards(vmInput, vmOutput, value, vmInput.CallerAddr)
