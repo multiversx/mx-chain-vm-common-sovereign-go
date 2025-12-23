@@ -12,7 +12,7 @@ import (
 )
 
 type esdtLocalBurn struct {
-	baseAlwaysActiveHandler
+	BaseAlwaysActiveHandler
 	keyPrefix             []byte
 	marshaller            vmcommon.Marshalizer
 	globalSettingsHandler vmcommon.ExtendedESDTGlobalSettingsHandler

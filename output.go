@@ -144,7 +144,7 @@ type VMOutput struct {
 	// This information tells the Node how to update the account data.
 	// It can contain new accounts or existing changed accounts.
 	// Note: the current implementation might also retrieve accounts that were not changed.
-	OutputAccounts map[string]*OutputAccount
+	OutputAccounts map[string]OutputAccountHandler
 
 	// DeletedAccounts is a list of public keys of accounts that need to be deleted
 	// as a result of the transaction.
@@ -191,7 +191,7 @@ func (vmOutput *VMOutput) GetFirstReturnData(asType vm.ReturnDataKind) (interfac
 func (vmOutput *VMOutput) GetNextAvailableOutputTransferIndex() uint32 {
 	maxTransferIndex := uint32(0)
 	for _, account := range vmOutput.OutputAccounts {
-		for _, transfer := range account.OutputTransfers {
+		for _, transfer := range account.GetOutputTransfers() {
 			if transfer.Index > maxTransferIndex {
 				maxTransferIndex = transfer.Index
 			}
@@ -211,11 +211,11 @@ func (vmOutput *VMOutput) ReindexTransfers(nextIndexProvider NextOutputTransferI
 	reindexed := false
 	crtIndex := nextIndexProvider.GetCrtTransferIndex() - 1
 	for _, account := range vmOutput.OutputAccounts {
-		for transferIdx, transfer := range account.OutputTransfers {
+		for transferIdx, transfer := range account.GetOutputTransfers() {
 			if transfer.Index == 0 {
 				return ErrTransfersNotIndexed
 			}
-			account.OutputTransfers[transferIdx].Index = transfer.Index + crtIndex
+			account.GetOutputTransfers()[transferIdx].Index = transfer.Index + crtIndex
 			reindexed = true
 		}
 	}

@@ -13,7 +13,7 @@ import (
 const maxLenForAddNFTQuantity = 32
 
 type esdtNFTAddQuantity struct {
-	baseAlwaysActiveHandler
+	BaseAlwaysActiveHandler
 	keyPrefix             []byte
 	globalSettingsHandler vmcommon.ESDTGlobalSettingsHandler
 	rolesHandler          vmcommon.ESDTRoleHandler

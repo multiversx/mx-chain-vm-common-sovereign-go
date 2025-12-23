@@ -8,11 +8,12 @@ import (
 	"github.com/multiversx/mx-chain-core-go/core"
 	"github.com/multiversx/mx-chain-core-go/core/check"
 	"github.com/multiversx/mx-chain-core-go/data/esdt"
+
 	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
 )
 
 type esdtNFTCreateRoleTransfer struct {
-	baseAlwaysActiveHandler
+	BaseAlwaysActiveHandler
 	keyPrefix        []byte
 	marshaller       vmcommon.Marshalizer
 	accounts         vmcommon.AccountsAdapter
@@ -72,7 +73,7 @@ func (e *esdtNFTCreateRoleTransfer) ProcessBuiltinFunction(
 		if errExec != nil {
 			return nil, errExec
 		}
-		vmOutput.OutputAccounts = make(map[string]*vmcommon.OutputAccount)
+		vmOutput.OutputAccounts = make(map[string]vmcommon.OutputAccountHandler)
 		vmOutput.OutputAccounts[string(outAcc.Address)] = outAcc
 	} else {
 		err = e.executeTransferNFTCreateChangeAtNextOwner(vmOutput, acntDst, vmInput)

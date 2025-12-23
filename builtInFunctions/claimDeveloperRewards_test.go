@@ -4,9 +4,10 @@ import (
 	"math/big"
 	"testing"
 
+	"github.com/stretchr/testify/require"
+
 	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
 	"github.com/multiversx/mx-chain-vm-common-go/mock"
-	"github.com/stretchr/testify/require"
 )
 
 func TestClaimDeveloperRewards_ProcessBuiltinFunction(t *testing.T) {
@@ -42,8 +43,8 @@ func TestClaimDeveloperRewards_ProcessBuiltinFunction(t *testing.T) {
 	acc.AddToDeveloperReward(value)
 	vmOutput, err = cdr.ProcessBuiltinFunction(nil, acc, vmInput)
 	require.Nil(t, err)
-	require.Equal(t, 1, len(vmOutput.OutputAccounts[string(vmInput.CallerAddr)].OutputTransfers))
-	require.Equal(t, value, vmOutput.OutputAccounts[string(vmInput.CallerAddr)].OutputTransfers[0].Value)
+	require.Equal(t, 1, len(vmOutput.OutputAccounts[string(vmInput.CallerAddr)].GetOutputTransfers()))
+	require.Equal(t, value, vmOutput.OutputAccounts[string(vmInput.CallerAddr)].GetOutputTransfers()[0].Value)
 	require.Equal(t, uint64(0), vmOutput.GasRemaining)
 	require.Equal(t, 1, len(vmOutput.Logs))
 	require.Equal(t, [][]byte{value.Bytes(), acc.OwnerAddress}, vmOutput.Logs[0].Topics)

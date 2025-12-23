@@ -11,13 +11,14 @@ import (
 	"github.com/multiversx/mx-chain-core-go/core/check"
 	"github.com/multiversx/mx-chain-core-go/data/esdt"
 	"github.com/multiversx/mx-chain-core-go/data/vm"
+
 	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
 )
 
 var zero = big.NewInt(0)
 
 type esdtTransfer struct {
-	baseAlwaysActiveHandler
+	BaseAlwaysActiveHandler
 	funcGasCost           uint64
 	marshaller            vmcommon.Marshalizer
 	keyPrefix             []byte
@@ -244,7 +245,7 @@ func addOutputTransferToVMOutput(
 		CallType:      callType,
 		SenderAddress: senderAddress,
 	}
-	vmOutput.OutputAccounts = make(map[string]*vmcommon.OutputAccount)
+	vmOutput.OutputAccounts = make(map[string]vmcommon.OutputAccountHandler)
 	vmOutput.OutputAccounts[string(recipient)] = &vmcommon.OutputAccount{
 		Address:         recipient,
 		OutputTransfers: []vmcommon.OutputTransfer{outTransfer},

@@ -20,7 +20,7 @@ var oneValue = big.NewInt(1)
 var zeroByteArray = []byte{0}
 
 type esdtNFTTransfer struct {
-	baseAlwaysActiveHandler
+	BaseAlwaysActiveHandler
 	*baseComponentsHolder
 	keyPrefix      []byte
 	payableHandler vmcommon.PayableChecker
@@ -502,7 +502,7 @@ func addNFTTransferToVMOutput(
 		CallType:      vmInput.CallType,
 		SenderAddress: vmInput.CallerAddr,
 	}
-	vmOutput.OutputAccounts = make(map[string]*vmcommon.OutputAccount)
+	vmOutput.OutputAccounts = make(map[string]vmcommon.OutputAccountHandler)
 	vmOutput.OutputAccounts[string(recipient)] = &vmcommon.OutputAccount{
 		Address:         recipient,
 		OutputTransfers: []vmcommon.OutputTransfer{outTransfer},

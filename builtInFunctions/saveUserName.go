@@ -8,11 +8,12 @@ import (
 	"github.com/multiversx/mx-chain-core-go/core"
 	"github.com/multiversx/mx-chain-core-go/core/check"
 	"github.com/multiversx/mx-chain-core-go/data/vm"
+
 	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
 )
 
 type saveUserName struct {
-	baseAlwaysActiveHandler
+	BaseAlwaysActiveHandler
 	gasCost             uint64
 	enableEpochsHandler vmcommon.EnableEpochsHandler
 	mapDnsAddresses     map[string]struct{}
@@ -94,7 +95,7 @@ func createCrossShardUserNameCall(
 	gasLimit uint64,
 ) (*vmcommon.VMOutput, error) {
 	vmOutput := &vmcommon.VMOutput{ReturnCode: vmcommon.Ok}
-	vmOutput.OutputAccounts = make(map[string]*vmcommon.OutputAccount)
+	vmOutput.OutputAccounts = make(map[string]vmcommon.OutputAccountHandler)
 	setUserNameTxData := builtInFuncName
 	for _, arg := range vmInput.Arguments {
 		setUserNameTxData += "@" + hex.EncodeToString(arg)
